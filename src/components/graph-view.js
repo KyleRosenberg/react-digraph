@@ -810,6 +810,8 @@ class GraphView extends React.Component<IGraphViewProps, IGraphViewState> {
         hoveredNodeData: data,
       });
     }
+
+    this.props.onNodeMouseEnter(data);
   };
 
   handleNodeMouseLeave = (event: any, data: any) => {
@@ -834,6 +836,8 @@ class GraphView extends React.Component<IGraphViewProps, IGraphViewState> {
 
       this.setState({ hoveredNode: false, edgeEndNode: null });
     }
+
+    this.props.onNodeMouseLeave(data);
   };
 
   handleNodeSelected = (
