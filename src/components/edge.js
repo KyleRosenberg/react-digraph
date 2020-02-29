@@ -32,6 +32,7 @@ export type IEdge = {
   label_from?: string,
   label_to?: string,
   [key: string]: any,
+  modClass?: string,
 };
 
 export type ITargetPosition = {
@@ -661,9 +662,13 @@ class Edge extends React.Component<IEdgeProps> {
     }
 
     const id = `${data.source || ''}_${data.target}`;
-    const className = GraphUtils.classNames('edge', {
+    const basicClassName = GraphUtils.classNames('edge', {
       selected: this.props.isSelected,
     });
+    const modClassName = data.modClass ? data.modClass : null;
+    const className = modClassName
+      ? basicClassName + ' ' + modClassName
+      : basicClassName;
     const edgeHandleTransformation = this.getEdgeHandleTransformation();
 
     return (
